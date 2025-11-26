@@ -100,6 +100,11 @@
 
     <!-- Supabase JS Client via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Configuração do ambiente (local) - Ignorar erro se não existir -->
+    <script src="env.js" onerror="console.log('env.js não encontrado - usando variáveis de ambiente do Netlify')"></script>
+
+    <!-- Script principal da aplicação -->
     <script src="app.js"></script>
 </body>
 </html>

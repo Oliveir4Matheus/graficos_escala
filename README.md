@@ -4,13 +4,27 @@ Aplicação simples de notas usando Supabase com correção para erro CORS.
 
 ## 🚀 Quick Start
 
-### 1. Configurar Supabase
+### 1. Configurar Credenciais
 
-1. Acesse o [Supabase Dashboard](https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api)
-2. Copie sua **anon/public key**
-3. Edite o arquivo `app.js` e substitua:
+**Opção A: Usando o script de setup (Recomendado)**
+```bash
+./setup.sh
+```
+Depois edite o arquivo `env.js` com sua chave do Supabase.
+
+**Opção B: Manual**
+1. Copie o arquivo de template:
+   ```bash
+   cp env.template.js env.js
+   ```
+2. Acesse o [Supabase Dashboard](https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api)
+3. Copie sua **anon/public key**
+4. Edite o arquivo `env.js` e cole sua chave:
    ```javascript
-   const SUPABASE_ANON_KEY = 'SUA_CHAVE_AQUI';
+   window.ENV = {
+       SUPABASE_URL: 'https://yuixpaydnmrdeywlstdn.supabase.co',
+       SUPABASE_ANON_KEY: 'sua-chave-aqui'
+   };
    ```
 
 ### 2. Criar Tabela no Supabase
@@ -55,15 +69,31 @@ git push
 
 ## 🔧 Desenvolvimento Local
 
+**Primeiro, configure suas credenciais:**
 ```bash
-# Servir arquivos
+# Método rápido
+./setup.sh
+
+# Ou manualmente
+cp env.template.js env.js
+# Depois edite env.js com sua chave
+```
+
+**Depois, inicie o servidor local:**
+```bash
+# Opção 1: Python
 python3 -m http.server 8000
 
-# Ou usar npx serve
+# Opção 2: Node.js
 npx serve .
+
+# Opção 3: PHP
+php -S localhost:8000
 ```
 
 Acesse: http://localhost:8000
+
+**Importante:** Não esqueça de criar a tabela no Supabase antes de usar!
 
 ## ❌ Erro CORS - O que estava errado?
 

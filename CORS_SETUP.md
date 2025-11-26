@@ -42,14 +42,29 @@ const { data, error } = await supabase
    - `http://localhost:3000` (para desenvolvimento)
    - `http://127.0.0.1:3000` (para desenvolvimento)
 
-### 3. **Obter sua Chave Anon do Supabase**
+### 3. **Configurar suas Credenciais**
 
-1. Acesse: https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api
-2. Copie a **anon/public key**
-3. Substitua em `app.js`:
-   ```javascript
-   const SUPABASE_ANON_KEY = 'sua-chave-aqui';
+**Método Rápido:**
+```bash
+./setup.sh
+```
+
+**Método Manual:**
+1. Copie o template:
+   ```bash
+   cp env.template.js env.js
    ```
+2. Acesse: https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api
+3. Copie a **anon/public key**
+4. Edite `env.js` e cole sua chave:
+   ```javascript
+   window.ENV = {
+       SUPABASE_URL: 'https://yuixpaydnmrdeywlstdn.supabase.co',
+       SUPABASE_ANON_KEY: 'cole-sua-chave-aqui'
+   };
+   ```
+
+**IMPORTANTE:** O arquivo `env.js` está no `.gitignore` e não será commitado por segurança.
 
 ### 4. **Criar a Tabela no Supabase**
 
@@ -95,10 +110,10 @@ USING (true);
 ## 📦 Deploy no Netlify
 
 ### Opção 1: Deploy Manual
-1. Arraste os arquivos `index.html`, `app.js` para o Netlify
-2. Configure as variáveis de ambiente se necessário
+1. Arraste os arquivos para o Netlify Drop
+2. Configure as variáveis de ambiente (veja abaixo)
 
-### Opção 2: Deploy via Git
+### Opção 2: Deploy via Git (Recomendado)
 1. Commit e push dos arquivos:
    ```bash
    git add .
@@ -109,6 +124,30 @@ USING (true);
 2. Conecte o repositório no Netlify:
    - Build command: (deixe vazio para site estático)
    - Publish directory: `.`
+
+### Configurar Variáveis de Ambiente no Netlify
+
+Como o arquivo `env.js` não é commitado (está no .gitignore), você precisa criar ele manualmente no servidor ou usar um build script.
+
+**Opção A: Criar env.js no servidor**
+1. No Netlify, vá em **Site settings** → **Build & deploy** → **Post processing** → **Snippet injection**
+2. Adicione este snippet no `<head>`:
+```html
+<script>
+window.ENV = {
+    SUPABASE_URL: 'https://yuixpaydnmrdeywlstdn.supabase.co',
+    SUPABASE_ANON_KEY: 'SUA_CHAVE_AQUI'
+};
+</script>
+```
+
+**Opção B: Criar env.js manualmente**
+1. Depois do deploy, vá no dashboard do Netlify
+2. **Deploys** → **Deploy settings** → **Trigger deploy** → **Deploy site**
+3. Ou adicione o arquivo `env.js` diretamente no repositório para produção (não recomendado para chaves sensíveis)
+
+**Opção C: Usar variáveis de ambiente do Netlify (Avançado)**
+Requer um build step com um script que gera o env.js a partir das variáveis de ambiente.
 
 ## 🔒 Segurança (Opcional)
 
