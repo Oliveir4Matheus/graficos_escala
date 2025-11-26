@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Note</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #00ff00;
+            text-align: center;
+        }
+        .note-form {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            background-color: #2d2d2d;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+        }
+        button {
+            background-color: #00ff00;
+            color: #1e1e1e;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #00cc00;
+        }
+        .notes-list {
+            margin-top: 30px;
+        }
+        .note-item {
+            background-color: #2d2d2d;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .note-date {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .error {
+            color: #ff0000;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ff0000;
+            border-radius: 5px;
+        }
+        .success {
+            color: #00ff00;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Terminal Note</h1>
+
+        <div id="message"></div>
+
+        <div class="note-form">
+            <h2>Nova Nota</h2>
+            <textarea id="noteContent" placeholder="Digite sua nota aqui..."></textarea>
+            <button onclick="saveNote()">Salvar Nota</button>
+        </div>
+
+        <div class="notes-list">
+            <h2>Notas Salvas</h2>
+            <button onclick="loadNotes()">Carregar Notas</button>
+            <div id="notesList"></div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Client via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

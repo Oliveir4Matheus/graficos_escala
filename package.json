@@ -1,0 +1,20 @@
+{
+  "name": "terminal-note",
+  "version": "1.0.0",
+  "description": "Terminal Note - Aplicação de notas com Supabase (CORS fix)",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "supabase",
+    "notes",
+    "terminal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}
