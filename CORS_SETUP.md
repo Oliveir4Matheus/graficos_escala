@@ -50,21 +50,28 @@ const { data, error } = await supabase
 ```
 
 **Método Manual:**
-1. Copie o template:
+1. Copie o .env.example:
    ```bash
-   cp env.template.js env.js
+   cp .env.example .env
    ```
 2. Acesse: https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api
 3. Copie a **anon/public key**
-4. Edite `env.js` e cole sua chave:
-   ```javascript
-   window.ENV = {
-       SUPABASE_URL: 'https://yuixpaydnmrdeywlstdn.supabase.co',
-       SUPABASE_ANON_KEY: 'cole-sua-chave-aqui'
-   };
+4. Edite `.env` e cole sua chave:
+   ```env
+   SUPABASE_URL=https://yuixpaydnmrdeywlstdn.supabase.co
+   SUPABASE_ANON_KEY=cole-sua-chave-aqui
+   ```
+5. Gere o env.js:
+   ```bash
+   npm run build
+   # ou
+   node build.js
    ```
 
-**IMPORTANTE:** O arquivo `env.js` está no `.gitignore` e não será commitado por segurança.
+**IMPORTANTE:**
+- O arquivo `.env` contém suas credenciais e está no `.gitignore`
+- O script `build.js` lê o `.env` e gera o `env.js` automaticamente
+- O `env.js` gerado também está no `.gitignore` por segurança
 
 ### 4. **Criar a Tabela no Supabase**
 

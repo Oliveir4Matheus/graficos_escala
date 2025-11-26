@@ -4,8 +4,10 @@
   "description": "Terminal Note - Aplicação de notas com Supabase (CORS fix)",
   "main": "index.html",
   "scripts": {
-    "dev": "python3 -m http.server 8000",
-    "serve": "npx serve ."
+    "build": "node build.js",
+    "dev": "npm run build && python3 -m http.server 8000",
+    "serve": "npm run build && npx serve .",
+    "start": "npm run build && python3 -m http.server 8000"
   },
   "keywords": [
     "supabase",

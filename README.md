@@ -4,27 +4,31 @@ Aplicação simples de notas usando Supabase com correção para erro CORS.
 
 ## 🚀 Quick Start
 
-### 1. Configurar Credenciais
+### 1. Configurar Credenciais (.env)
 
 **Opção A: Usando o script de setup (Recomendado)**
 ```bash
 ./setup.sh
 ```
-Depois edite o arquivo `env.js` com sua chave do Supabase.
+Depois edite o arquivo `.env` com sua chave do Supabase.
 
 **Opção B: Manual**
-1. Copie o arquivo de template:
+1. Copie o arquivo .env.example:
    ```bash
-   cp env.template.js env.js
+   cp .env.example .env
    ```
 2. Acesse o [Supabase Dashboard](https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api)
 3. Copie sua **anon/public key**
-4. Edite o arquivo `env.js` e cole sua chave:
-   ```javascript
-   window.ENV = {
-       SUPABASE_URL: 'https://yuixpaydnmrdeywlstdn.supabase.co',
-       SUPABASE_ANON_KEY: 'sua-chave-aqui'
-   };
+4. Edite o arquivo `.env` e cole sua chave:
+   ```env
+   SUPABASE_URL=https://yuixpaydnmrdeywlstdn.supabase.co
+   SUPABASE_ANON_KEY=sua-chave-aqui
+   ```
+5. Gere o env.js:
+   ```bash
+   npm run build
+   # ou
+   node build.js
    ```
 
 ### 2. Criar Tabela no Supabase
@@ -73,22 +77,25 @@ git push
 ```bash
 # Método rápido
 ./setup.sh
+# Edite o .env com sua chave
+# Execute: npm run build
 
 # Ou manualmente
-cp env.template.js env.js
-# Depois edite env.js com sua chave
+cp .env.example .env
+# Edite .env com sua chave
+npm run build
 ```
 
 **Depois, inicie o servidor local:**
 ```bash
-# Opção 1: Python
-python3 -m http.server 8000
+# Opção 1: Build + Python (Recomendado)
+npm run dev
 
-# Opção 2: Node.js
-npx serve .
+# Opção 2: Build + Node.js
+npm run serve
 
-# Opção 3: PHP
-php -S localhost:8000
+# Opção 3: Manual
+npm run build && python3 -m http.server 8000
 ```
 
 Acesse: http://localhost:8000

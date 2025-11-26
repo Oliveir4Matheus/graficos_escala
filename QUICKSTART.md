@@ -9,15 +9,26 @@ Execute o script de setup:
 ./setup.sh
 ```
 
-Isso criará o arquivo `env.js`. Agora edite-o:
+Isso criará o arquivo `.env`. Agora edite-o:
 ```bash
-nano env.js
+nano .env
 # ou
-vim env.js
+vim .env
 # ou abra com seu editor favorito
 ```
 
-Cole sua chave do Supabase onde está `YOUR_SUPABASE_ANON_KEY_HERE`.
+Cole sua chave do Supabase onde está `your_supabase_anon_key_here`:
+```env
+SUPABASE_URL=https://yuixpaydnmrdeywlstdn.supabase.co
+SUPABASE_ANON_KEY=sua_chave_aqui
+```
+
+Depois gere o env.js:
+```bash
+npm run build
+# ou
+node build.js
+```
 
 **Onde encontrar a chave?**
 👉 https://app.supabase.com/project/yuixpaydnmrdeywlstdn/settings/api
@@ -49,7 +60,9 @@ USING (true) WITH CHECK (true);
 
 Inicie um servidor local:
 ```bash
-python3 -m http.server 8000
+npm run dev
+# ou manualmente:
+npm run build && python3 -m http.server 8000
 ```
 
 Abra no navegador:
@@ -91,8 +104,9 @@ window.ENV = {
 ## ❓ Problemas?
 
 ### Erro: "Configure as credenciais do Supabase primeiro!"
-- Certifique-se que criou o arquivo `env.js`
-- Verifique se colou a chave correta (sem aspas extras)
+- Certifique-se que criou o arquivo `.env`
+- Execute `npm run build` para gerar o `env.js`
+- Verifique se colou a chave correta no `.env` (sem aspas)
 - Recarregue a página (F5)
 
 ### Erro ao salvar nota
@@ -111,7 +125,8 @@ window.ENV = {
 
 - **README.md** - Documentação completa
 - **CORS_SETUP.md** - Detalhes sobre o erro CORS e como foi resolvido
-- **env.template.js** - Template de configuração
+- **.env.example** - Template de configuração
+- **build.js** - Script que gera env.js a partir do .env
 
 ---
 
